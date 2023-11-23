@@ -1,0 +1,61 @@
+{
+  "name": "paretus-pc-vue",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "prepare": "husky install",
+    "preinstall": "npx only-allow pnpm",
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint-staged": "lint-staged",
+    "eslint": "eslint \"src/**/*.{vue,js,ts}\" --fix",
+    "prettier": "prettier \"src/**/*.{js,ts,json,css,scss,vue,md}\" --write",
+    "release": "npx bumpp --commit --tag --push"
+  },
+  "dependencies": {
+    "@bytemd/plugin-breaks": "^1.21.0",
+    "@bytemd/plugin-frontmatter": "^1.21.0",
+    "@bytemd/plugin-gemoji": "^1.21.0",
+    "@bytemd/plugin-gfm": "^1.21.0",
+    "@bytemd/plugin-highlight": "^1.21.0",
+    "@bytemd/plugin-medium-zoom": "^1.21.0",
+    "@bytemd/plugin-mermaid": "^1.21.0",
+    "@bytemd/vue-next": "^1.21.0",
+    "@tabler/icons-vue": "^2.41.0",
+    "@vueuse/core": "^10.6.1",
+    "ant-design-vue": "4.x",
+    "axios": "^1.4.0",
+    "bytemd": "^1.21.0",
+    "dayjs": "^1.11.8",
+    "lodash-es": "^4.17.21",
+    "pinia": "^2.0.23",
+    "qs": "^6.11.2",
+    "vue": "^3.2.47",
+    "vue-router": "^4.2.4"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
+    "@iconify-json/tabler": "^1.1.80",
+    "@vitejs/plugin-vue": "^4.1.0",
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.15.1",
+    "highlight.js": "^11.8.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "prettier": "^2.8.8",
+    "sass": "^1.63.6",
+    "unocss": "^0.53.4",
+    "unplugin-vue-components": "^0.25.2",
+    "vite": "^4.3.9"
+  },
+  "lint-staged": {
+    "*.{js,ts,vue}": "eslint --fix",
+    "*.{js,ts,vue,scss,md}": "prettier --write"
+  },
+  "license": "MIT"
+}
