@@ -29,7 +29,7 @@ const handleLogout = () => {
   <div class="box-border h-screen bg-light-400">
     <div class="bg-white h-14 fcb box-border shadow-sm px-24 <sm:px-3">
       <div class="fcc" @click="goHome">
-        <i class="text-3xl text-[#4945ff] i-tabler-aperture"></i>
+        <i class="text-3xl text-[#4945ff] i-tabler-aperture hover:animate-spin"></i>
         <div class="text-xl pl-2">Paretus</div>
       </div>
       <div class="fcc" v-if="!appStore.userInfo">
