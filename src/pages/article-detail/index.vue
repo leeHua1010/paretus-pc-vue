@@ -6,6 +6,8 @@ import { stringify } from "~/utils/utils";
 import { formatTime } from "~/utils/time";
 import { Viewer, plugins } from "~/plugins/mdEditor";
 
+const mediaApi = import.meta.env.VITE_MEDIA_API;
+
 const articleDetail = ref(null);
 
 const route = useRoute();
@@ -15,23 +17,29 @@ onMounted(() => {
 });
 
 async function getDetail() {
-  const query = stringify({ populate: ["user"] });
-  const { data: res } = await articleApi.detail(route.query.id, query);
+  const query = stringify({ populate: { user: { populate: ["avatar"] } } });
+  const { data: res } = await articleApi.read(route.query.id, query);
   articleDetail.value = res.data;
 }
 </script>
 
 <template>
   <div>
-    <div class="bg-white p-4 rounded-md text-base mb-8">
-      <div class="text-xl font-bold">{{ articleDetail?.title }}</div>
-      <div class="flex items-center pt-4 pb-2">
-        <div class="bg-[#6a69ff] rounded-1/2 w-10 h-10 fcc text-white text-xl">
+    <div class="bg-white rounded-md text-base mb-8 p-4">
+      <div class="font-bold text-xl">{{ articleDetail?.title }}</div>
+      <div class="flex pt-4 pb-2 items-center">
+        <img
+          v-if="articleDetail?.user?.avatar?.url"
+          className="rounded-1/2 h-10 w-10"
+          :src="mediaApi + articleDetail?.user?.avatar?.url"
+          alt="avatar"
+        />
+        <div v-else class="bg-[#6a69ff] rounded-1/2 h-10 text-white text-xl w-10 fcc">
           {{ articleDetail?.user?.username?.charAt(0).toUpperCase() }}
         </div>
-        <div class="pl-2 text-sm">
-          <div class="font-bold">{{ articleDetail?.user?.username }}</div>
-          <div class="text-zinc-400 pt-1">{{ formatTime(articleDetail?.createdAt) }}</div>
+        <div class="text-sm pl-2">
+          <div class="font-bold text-base">{{ articleDetail?.user?.username }}</div>
+          <div class="pt-1 text-zinc-400">{{ formatTime(articleDetail?.createdAt) }}</div>
         </div>
       </div>
 

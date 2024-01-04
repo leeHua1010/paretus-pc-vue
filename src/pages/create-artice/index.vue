@@ -44,12 +44,12 @@ const handleChange = (value) => {
     <div class="bg-white rounded-md mb-4 w-full p-5 <sm:p-0">
       <a-form :model="formData" layout="vertical" @finish="onFinish">
         <a-form-item label="Title" name="title">
-          <a-input v-model:value="formData.title" placeholder="Enter the title" />
+          <a-input v-model:value="formData.title" placeholder="Please input title" />
         </a-form-item>
 
         <editor :value="formData.content" :plugins="plugins" @change="handleChange" />
 
-        <div class="flex justify-center mt-8">
+        <div class="flex mt-8 justify-center">
           <a-form-item class="w-98 <sm:w-72">
             <a-button
               type="primary"

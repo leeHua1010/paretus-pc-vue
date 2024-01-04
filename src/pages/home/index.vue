@@ -35,7 +35,7 @@ onMounted(() => {
 async function getList() {
   loading.value = true;
   const query = stringify({
-    populate: ["user"],
+    populate: ["user", "avatar"],
     pagination: { page: page.value, pageSize: pageSize.value },
     sort: ["createdAt:desc"],
   });
@@ -55,8 +55,10 @@ const getHotArticles = async () => {
   hotArticles.value = res.data;
 };
 
-const checkDetail = (id) => {
-  router.push({ path: "/article/detail", query: { id } });
+const checkDetail = async (item) => {
+  const data = { ...item, views: item.views + 1 };
+  await articleApi.update(item.id, data);
+  router.push({ path: "/article/detail", query: { id: item.id } });
 };
 
 const onBackTop = () => {
@@ -70,26 +72,26 @@ const onBackTop = () => {
       <div
         v-for="item in list"
         :key="item.id"
-        @click="checkDetail(item.id)"
-        class="bg-white py-2 px-4 rounded-md mb-3 cursor-pointer hover:bg-light-200"
+        @click="checkDetail(item)"
+        class="bg-white rounded-md cursor-pointer mb-3 py-2 px-4 hover:bg-light-200"
       >
-        <div class="flex items-center text-[#8a919f] text-sm">
+        <div class="flex text-sm text-[#8a919f] items-center">
           <div>{{ item?.user?.username }}</div>
           <a-divider type="vertical"></a-divider>
           <div>{{ formatRelativeTime(item.createdAt) }}</div>
         </div>
         <div class="font-600 py-3">{{ item.title }}</div>
         <div class="text-[#6B6B6B] text-13px">{{ item.content.substring(0, 36) }}</div>
-        <div class="flex items-center justify-between text-[#6B6B6B] mt-2">
-          <div class="flex items-center text-[#8a919f]">
-            <div class="flex items-center mr-5 text-sm">
-              <i class="i-tabler-eye text-base"></i>
+        <div class="flex mt-2 text-[#6B6B6B] items-center justify-between">
+          <div class="flex text-[#8a919f] items-center">
+            <div class="flex mr-5 text-sm items-center">
+              <i class="text-base i-tabler-eye"></i>
               <div class="pl-1">{{ item.views }}</div>
             </div>
           </div>
         </div>
       </div>
-      <div v-show="loading" class="animate-bounce text-xl">loading...</div>
+      <div v-show="loading" class="text-xl animate-bounce">loading...</div>
     </div>
     <template v-else>
       <div>Empty.</div>
@@ -97,12 +99,12 @@ const onBackTop = () => {
 
     <div className="ml-6">
       <div className="bg-white rounded-md p-4 w-64">
-        <div className="font-bold pb-3 border border-b-solid border-b-[#e4e6eb]">热榜 🔥</div>
+        <div className="border border-b-solid font-bold border-b-[#e4e6eb] pb-3">热榜 🔥</div>
         <div
           v-for="item in hotArticles"
           :key="item.id"
-          @click="checkDetail(item.id)"
-          class="pt-4 text-sm cursor-pointer truncate hover:opacity-70"
+          @click="checkDetail(item)"
+          class="cursor-pointer text-sm pt-4 truncate hover:opacity-70"
         >
           {{ item.title }}
         </div>
@@ -112,9 +114,9 @@ const onBackTop = () => {
     <div
       v-show="y > 1688"
       @click="onBackTop"
-      class="absolute right-10 bottom-12 bg-white w-10 h-10 rounded-1/2 flex items-center justify-center shadow cursor-pointer"
+      class="bg-white cursor-pointer flex rounded-1/2 h-10 shadow right-10 bottom-12 w-10 absolute items-center justify-center"
     >
-      <i class="i-tabler-arrow-bar-to-up text-xl" />
+      <i class="text-xl i-tabler-arrow-bar-to-up" />
     </div>
   </div>
 </template>

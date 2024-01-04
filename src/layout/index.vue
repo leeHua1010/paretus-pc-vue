@@ -15,7 +15,7 @@ const goHome = () => router.push({ path: "/" });
 
 const goCreateArticle = () => router.push({ path: "/article/create" });
 
-const goProfile = () => router.push({ path: "profile/info" });
+const goProfile = () => router.push({ path: "/profile/info" });
 
 const handleLogout = () => {
   storage.setUserInfo(null);
@@ -26,9 +26,9 @@ const handleLogout = () => {
 </script>
 
 <template>
-  <div class="box-border h-screen bg-light-400">
-    <div class="bg-white h-14 fcb box-border shadow-sm px-24 <sm:px-3">
-      <div class="fcc" @click="goHome">
+  <div class="h-screen bg-light-400 box-border">
+    <div class="bg-white h-14 shadow-sm px-24 fcb box-border <sm:px-3">
+      <div class="cursor-pointer fcc" @click="goHome">
         <i class="text-3xl text-[#4945ff] i-tabler-aperture hover:animate-spin"></i>
         <div class="text-xl pl-2">Paretus</div>
       </div>
@@ -39,14 +39,21 @@ const handleLogout = () => {
         <a-button type="primary" @click="goSignup" ghost shape="round">Sign up</a-button>
       </div>
       <div v-else class="flex items-center">
-        <div class="flex items-center mr-6 cursor-pointer" @click="goCreateArticle">
-          <i class="i-tabler-edit text-lg"></i>
-          <div class="pl-1 text-sm">Write</div>
+        <div class="cursor-pointer flex mr-6 items-center" @click="goCreateArticle">
+          <i class="text-lg i-tabler-edit"></i>
+          <div class="text-sm pl-1">Write</div>
         </div>
-        <div class="flex items-center cursor-pointer">
+        <div class="cursor-pointer flex items-center">
           <a-dropdown>
+            <img
+              v-if="appStore.userInfo?.avatar?.url"
+              class="rounded-1/2 w-8.5 h8.5"
+              :src="appStore.avatarUrl"
+              alt="avatar"
+            />
             <div
-              class="bg-[#6a69ff] flex items-center justify-center w-8.5 h8.5 text-white rounded-1/2 text-sm"
+              v-else
+              class="flex bg-[#6a69ff] rounded-1/2 text-white text-sm w-8.5 items-center justify-center h8.5"
             >
               {{ appStore.userInfo?.username?.charAt(0).toUpperCase() }}
             </div>
@@ -71,7 +78,7 @@ const handleLogout = () => {
       </div>
     </div>
 
-    <div id="layout" class="px-24 pt-4 h-[calc(100vh-56px)] box-border overflow-y-scroll <sm:px-3">
+    <div id="layout" class="h-[calc(100vh-56px)] px-24 pt-4 box-border overflow-y-scroll <sm:px-3">
       <router-view></router-view>
     </div>
   </div>

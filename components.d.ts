@@ -20,6 +20,7 @@ declare module 'vue' {
     APagination: typeof import('ant-design-vue/es')['Pagination']
     ATabPane: typeof import('ant-design-vue/es')['TabPane']
     ATabs: typeof import('ant-design-vue/es')['Tabs']
+    AUpload: typeof import('ant-design-vue/es')['Upload']
     BackTop: typeof import('./src/components/back-top/index.vue')['default']
     NotFound: typeof import('./src/components/not-found/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

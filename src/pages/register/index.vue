@@ -5,6 +5,8 @@ import authApi from "~/api/auth";
 import { useAppStore } from "~/store/app";
 import storage from "~/utils/storage";
 import { message } from "ant-design-vue";
+import userApi from "~/api/user";
+import { stringify } from "~/utils/utils";
 
 const router = useRouter();
 const appStore = useAppStore();
@@ -22,8 +24,10 @@ const onFinish = async (values) => {
     messageApi.open({ key, type: "loading", content: "Login..." });
     const { data } = await authApi.register(values);
     storage.setToken(data.jwt);
-    storage.setUserInfo(data.user);
-    appStore.setUserInfo(data.user);
+    const query = stringify({ populate: ["avatar"] });
+    const { data: userInfo } = await userApi.me(query);
+    storage.setUserInfo(userInfo);
+    appStore.setUserInfo(userInfo);
     messageApi.open({ key, type: "success", content: "Welcome back!", duration: 2 });
     loading.value = false;
     router.replace("/");
