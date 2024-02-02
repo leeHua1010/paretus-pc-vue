@@ -15,7 +15,7 @@ module.exports = {
       parser: "vue-eslint-parser",
       parserOptions: { ecmaVersion: 12, sourceType: "module" },
       rules: {
-        "vue/multi-word-component-names": ["error", { ignores: ["index"] }],
+        "vue/multi-word-component-names": ["off"],
         "vue/component-name-in-template-casing": ["error", "kebab-case"],
       },
     },

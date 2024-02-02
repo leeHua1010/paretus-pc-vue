@@ -47,13 +47,13 @@ const handleLogout = () => {
           <a-dropdown>
             <img
               v-if="appStore.userInfo?.avatar?.url"
-              class="rounded-1/2 w-8.5 h8.5"
+              class="rounded-1/2 h-8.5 w-8.5"
               :src="appStore.avatarUrl"
               alt="avatar"
             />
             <div
               v-else
-              class="flex bg-[#6a69ff] rounded-1/2 text-white text-sm w-8.5 items-center justify-center h8.5"
+              class="flex bg-[#6a69ff] rounded-1/2 h-8.5 text-white text-sm w-8.5 items-center justify-center"
             >
               {{ appStore.userInfo?.username?.charAt(0).toUpperCase() }}
             </div>
@@ -79,7 +79,11 @@ const handleLogout = () => {
     </div>
 
     <div id="layout" class="h-[calc(100vh-56px)] px-24 pt-4 box-border overflow-y-scroll <sm:px-3">
-      <router-view></router-view>
+      <router-view v-slot="{ Component }">
+        <keep-alive :include="['Home']">
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
     </div>
   </div>
 </template>

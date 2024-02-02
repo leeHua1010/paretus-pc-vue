@@ -7,4 +7,7 @@ export default {
   update(id, query, data) {
     return request.put(`/users/${id}?${query}`, data);
   },
+  read(id, query) {
+    return request.get(`/users/${id}?${query}`);
+  },
 };

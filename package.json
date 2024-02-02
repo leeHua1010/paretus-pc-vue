@@ -32,14 +32,14 @@
     "lodash-es": "^4.17.21",
     "pinia": "^2.0.23",
     "qs": "^6.11.2",
-    "vue": "^3.2.47",
+    "vue": "^3.4.5",
     "vue-router": "^4.2.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.6",
     "@commitlint/config-conventional": "^17.6.6",
     "@iconify-json/tabler": "^1.1.80",
-    "@vitejs/plugin-vue": "^4.1.0",
+    "@vitejs/plugin-vue": "^5.0.2",
     "eslint": "^8.43.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",

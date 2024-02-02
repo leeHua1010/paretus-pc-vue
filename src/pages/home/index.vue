@@ -8,12 +8,16 @@ import { onMounted } from "vue";
 import { stringify } from "~/utils/utils";
 import { useRouter } from "vue-router";
 import { useScroll } from "@vueuse/core";
+import { onActivated } from "vue";
+
+defineOptions({ name: "Home" });
 
 const scrollEl = ref(null);
 const list = ref([]);
 const pagination = ref(null);
 const loading = ref(false);
 const hotArticles = ref([]);
+const scrollTop = ref(0);
 
 const { page, setPage, pageSize } = usePaginate();
 const router = useRouter();
@@ -30,6 +34,10 @@ const { y } = useScroll(scrollEl);
 onMounted(() => {
   scrollEl.value = document.querySelector("#layout");
   getHotArticles();
+});
+
+onActivated(() => {
+  scrollEl.value.scrollTo({ top: scrollTop.value });
 });
 
 async function getList() {
@@ -56,6 +64,7 @@ const getHotArticles = async () => {
 };
 
 const checkDetail = async (item) => {
+  scrollTop.value = y.value;
   const data = { ...item, views: item.views + 1 };
   await articleApi.update(item.id, data);
   router.push({ path: "/article/detail", query: { id: item.id } });

@@ -17,10 +17,12 @@ const router = createRouter({
     {
       path: "/auth/login",
       component: () => import("~/pages/login/index.vue"),
+      meta: { title: "Login" },
     },
     {
       path: "/auth/register",
       component: () => import("~/pages/register/index.vue"),
+      meta: { title: "Register" },
     },
     {
       path: "/article",
@@ -29,6 +31,7 @@ const router = createRouter({
         {
           path: "create",
           component: () => import("~/pages/create-artice/index.vue"),
+          meta: { title: "Create Article" },
         },
         {
           path: "detail",
@@ -43,6 +46,7 @@ const router = createRouter({
         {
           path: "info",
           component: () => import("~/pages/profile/index.vue"),
+          meta: { title: "Profile" },
         },
       ],
     },
