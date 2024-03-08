@@ -29,8 +29,10 @@ const onFinish = async (values) => {
     storage.setUserInfo(userInfo);
     appStore.setUserInfo(userInfo);
     messageApi.open({ key, type: "success", content: "Welcome back!", duration: 2 });
-    loading.value = false;
-    router.replace("/");
+    setTimeout(() => {
+      loading.value = false;
+      router.replace("/");
+    }, 2000);
   } catch (error) {
     loading.value = false;
   }
@@ -38,10 +40,10 @@ const onFinish = async (values) => {
 </script>
 
 <template>
-  <div class="fcc">
+  <div class="flex items-center justify-center">
     <context-holder></context-holder>
     <div class="w-100">
-      <div class="text-center pt-16">
+      <div class="text-center pt-4">
         <div><i class="text-6xl text-[#4945ff] i-tabler-aperture"></i></div>
         <div class="font-bold pt-2 pb-8 text-2xl">Sign in to your account</div>
       </div>

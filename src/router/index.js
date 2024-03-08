@@ -15,14 +15,20 @@ const router = createRouter({
       ],
     },
     {
-      path: "/auth/login",
-      component: () => import("~/pages/login/index.vue"),
-      meta: { title: "Login" },
-    },
-    {
-      path: "/auth/register",
-      component: () => import("~/pages/register/index.vue"),
-      meta: { title: "Register" },
+      path: "/auth",
+      component: Layout,
+      children: [
+        {
+          path: "login",
+          component: () => import("~/pages/login/index.vue"),
+          meta: { title: "Login" },
+        },
+        {
+          path: "register",
+          component: () => import("~/pages/register/index.vue"),
+          meta: { title: "Register" },
+        },
+      ],
     },
     {
       path: "/article",

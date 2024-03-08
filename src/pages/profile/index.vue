@@ -71,12 +71,15 @@ const onBeforeUpload = async (file) => {
           :src="appStore.avatarUrl"
           alt="avatar"
         />
-        <div v-else class="rounded-xl bg-[#6a69ff] h-22 text-white text-5xl w-22 fcc">
+        <div
+          v-else
+          class="rounded-xl flex bg-[#6a69ff] h-22 text-white text-5xl w-22 items-center justify-center"
+        >
           {{ appStore.userInfo?.username?.charAt(0).toUpperCase() }}
         </div>
         <div
           v-if="isAvararHover"
-          class="rounded-xl flex-col bg-[#191b1f] bg-opacity-40 h-22 text-white top-0 left-0 w-22 absolute fcc"
+          class="rounded-xl flex-col flex bg-[#191b1f] bg-opacity-40 h-22 text-white top-0 left-0 w-22 absolute items-center justify-center"
         >
           <i class="text-2xl i-tabler-camera"></i>
           <div>修改头像</div>

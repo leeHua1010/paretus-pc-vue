@@ -28,11 +28,11 @@ const handleLogout = () => {
 <template>
   <div class="h-screen bg-light-400 box-border">
     <div class="bg-white h-14 shadow-sm px-24 fcb box-border <sm:px-3">
-      <div class="cursor-pointer fcc" @click="goHome">
+      <div class="cursor-pointer flex items-center justify-center" @click="goHome">
         <i class="text-3xl text-[#4945ff] i-tabler-aperture hover:animate-spin"></i>
         <div class="text-xl pl-2">Paretus</div>
       </div>
-      <div class="fcc" v-if="!appStore.userInfo">
+      <div class="flex items-center justify-center" v-if="!appStore.userInfo">
         <div class="mr-4">
           <a-button type="primary" @click="goLogin" shape="round">Login</a-button>
         </div>

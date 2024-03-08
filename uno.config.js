@@ -10,8 +10,4 @@ export default defineConfig({
       },
     }),
   ],
-  shortcuts: {
-    fcc: "flex items-center justify-center",
-    fcb: "flex items-center justify-between",
-  },
 });

@@ -47,7 +47,7 @@ const checkProfile = () => {
         />
         <div
           v-else
-          class="cursor-pointer bg-[#6a69ff] rounded-1/2 h-10 text-white text-xl w-10 fcc"
+          class="cursor-pointer flex bg-[#6a69ff] rounded-1/2 h-10 text-white text-xl w-10 items-center justify-center"
           @click="checkProfile"
         >
           {{ articleDetail?.user?.username?.charAt(0).toUpperCase() }}
